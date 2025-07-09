@@ -1,0 +1,88 @@
+#include <iostream>
+
+const int SIZE = 5;
+
+void swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void sortByMobile(int mobile[], int home[])
+{
+    for (int i = 0; i < SIZE - 1; ++i)
+    {
+        for (int j = 0; j < SIZE - i - 1; ++j)
+        {
+            if (mobile[j] > mobile[j + 1])
+            {
+                swap(mobile[j], mobile[j + 1]);
+                swap(home[j], home[j + 1]);
+            }
+        }
+    }
+}
+
+void sortByHome(int mobile[], int home[])
+{
+    for (int i = 0; i < SIZE - 1; ++i)
+    {
+        for (int j = 0; j < SIZE - i - 1; ++j)
+        {
+            if (home[j] > home[j + 1])
+            {
+                swap(home[j], home[j + 1]);
+                swap(mobile[j], mobile[j + 1]);
+            }
+        }
+    }
+}
+
+void printList(int mobile[], int home[])
+{
+    std::cout << "Mobile\tHomely\n";
+    for (int i = 0; i < SIZE; ++i)
+    {
+        std::cout << mobile[i] << "\t" << home[i] << "\n";
+    }
+}
+
+int main()
+{
+    int mobile[SIZE] = { 380991, 380661, 380501, 380671, 380931 };
+    int home[SIZE] = { 443321, 228833, 555222, 110110, 778899 };
+
+    int choice;
+    do
+    {
+        std::cout << "1. Sort by mobile numbers\n";
+        std::cout << "2. Sort by house numbers\n";
+        std::cout << "3. Display a list of users\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Your choice: ";
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            sortByMobile(mobile, home);
+            std::cout << "Sorted by mobile numbers.\n";
+            break;
+        case 2:
+            sortByHome(mobile, home);
+            std::cout << "Sorted by house numbers.\n";
+            break;
+        case 3:
+            printList(mobile, home);
+            break;
+        case 4:
+            std::cout << "Exit...\n";
+            break;
+        default:
+            std::cout << "Wrong choice!\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
