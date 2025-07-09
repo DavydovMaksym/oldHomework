@@ -1,0 +1,42 @@
+#include <iostream>
+
+int main()
+{
+    const int SIZE = 10;
+    int arr[SIZE] = { 5, 2, 9, 1, 10, 6, 7, 3, 4, 8 };
+    std::cout << "Original array: ";
+    for (int i = 0; i < SIZE; ++i)
+    {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < SIZE - 1; ++i)
+    {
+        int swaps = 0;
+
+        for (int j = 0; j < SIZE - i - 1; ++j)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swaps++;
+            }
+        }
+
+        if (swaps == 0)
+        {
+            std::cout << "No swaps on step " << i + 1 << " - array is sorted.\n";
+            break;
+        }
+    }
+    std::cout << "Sorted array: ";
+    for (int i = 0; i < SIZE; ++i)
+    {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\n";
+
+    return 0;
+}
